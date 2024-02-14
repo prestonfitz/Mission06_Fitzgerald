@@ -6,21 +6,35 @@ namespace Mission06_Fitzgerald.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private NewMovieContext _context;
+        public HomeController(NewMovieContext NMC)
         {
-            _logger = logger;
+            _context = NMC;
         }
+
 
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult AddMovie()
+        { 
+            return View(); 
+        }
+
+        [HttpPost]
+        public IActionResult AddMovie(NewMovie response) 
+        {
+            _context.Movies.Add(response);
+            _context.SaveChanges();
+            return View("Confirmation", response);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
