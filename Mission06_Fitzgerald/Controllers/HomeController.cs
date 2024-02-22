@@ -25,16 +25,27 @@ namespace Mission06_Fitzgerald.Controllers
 
         [HttpGet]
         public IActionResult AddMovie()
-        { 
-            return View(); 
+        {
+            ViewBag.Categories = _context.Categories.ToList();
+
+            return View("AddMovie", new NewMovie());
         }
 
         [HttpPost]
-        public IActionResult AddMovie(NewMovie response) 
+        public IActionResult AddMovie(NewMovie response)
         {
-            _context.Movies.Add(response);
-            _context.SaveChanges();
-            return View("Confirmation", response);
+            if (ModelState.IsValid)
+            {
+                _context.Movies.Add(response);
+                _context.SaveChanges();
+
+                return View("Confirmation", response);
+            }
+            else
+            {
+                ViewBag.Categories = _context.Categories.ToList();
+                return View(response);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
