@@ -17,15 +17,32 @@ namespace Mission06_Fitzgerald.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
 
+            modelBuilder.Entity("Mission06_Fitzgerald.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("Mission06_Fitzgerald.Models.NewMovie", b =>
                 {
                     b.Property<int>("MovieID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("CopiedToPlex")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -53,7 +70,20 @@ namespace Mission06_Fitzgerald.Migrations
 
                     b.HasKey("MovieID");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Movies");
+                });
+
+            modelBuilder.Entity("Mission06_Fitzgerald.Models.NewMovie", b =>
+                {
+                    b.HasOne("Mission06_Fitzgerald.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }
