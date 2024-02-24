@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
 namespace Mission06_Fitzgerald.Models
 {
     public class NewMovie
@@ -17,9 +18,9 @@ namespace Mission06_Fitzgerald.Models
         public Category? Category { get; set; }
 
         [Required]
+        [Range(1888,2024)]
         public int Year { get; set; }
-        [Required]
-        public string Director { get; set; }
+        public string? Director { get; set; }
         [Required]
         public string Rating { get; set; }
         public bool? Edited { get; set; }

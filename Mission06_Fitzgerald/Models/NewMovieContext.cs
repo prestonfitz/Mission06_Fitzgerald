@@ -8,7 +8,6 @@ namespace Mission06_Fitzgerald.Models
         public NewMovieContext(DbContextOptions<NewMovieContext> options) : base(options) { }
 
         public DbSet<NewMovie> Movies { get; set; }
-
         public DbSet<Category> Categories { get; set; }
     }
 

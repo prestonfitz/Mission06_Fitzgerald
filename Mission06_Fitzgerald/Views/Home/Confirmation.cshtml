@@ -5,12 +5,17 @@
 }
 @model NewMovie
 
-<h2>Here is what was entered:</h2>
-<p>Title: @Model.Title</p>
-<p>Category: @Model.Category</p>
-<p>Year: @Model.Year</p>
-<p>Director: @Model.Director</p>
-<p>Rating: @Model.Rating</p>
-<p>Edited: @Model.Edited</p>
-<p>Lent to: @Model.LentTo</p>
-<p>Notes: @Model.Notes</p>
+<div class="text-center">
+    <h2>Here is the movie that was entered:</h2>
+    <p>Title: @Model.Title</p>
+    <p>Category: @Model.Category</p>
+    <p>Year: @Model.Year</p>
+    <p>Director: @Model.Director</p>
+    <p>Rating: @Model.Rating</p>
+    <p>Edited: @Model.Edited</p>
+    <p>Lent to: @Model.LentTo</p>
+    <p>Notes: @Model.Notes</p>
+
+    <a class="btn btn-info" asp-controller="Home" asp-action="AddMovie">Add another</a>
+    <a class="btn btn-info" asp-controller="Home" asp-action="MovieList">View list</a>
+</div>
