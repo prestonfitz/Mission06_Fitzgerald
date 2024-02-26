@@ -54,6 +54,7 @@ namespace Mission06_Fitzgerald.Controllers
             //linq to get data
             //var movies = _context.Movies.Where(x => x.Director is not null).ToList();
             var movies = _context.Movies.Join(_context.Categories, x => x.CategoryId, y => y.CategoryId, (x, y) => x).ToList();
+            //ViewBag.JoinedTable = movies;
 
             return View(movies);
         }
